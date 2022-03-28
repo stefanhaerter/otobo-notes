@@ -1,0 +1,17 @@
+Heisenbug Dynamic Field Database
+- Environment: 10.1, docker, .env => .docker_compose_env_http_selenium
+- Config:
+  - Server: db
+  - Database: otobo
+  - User: otobo
+  - Password: otobo-docker-databasepw
+  - Table: queue
+  - Identifier: id
+  - Label: id
+  - Datatype: Integer
+  - Search Field and List Field enabled
+  - Assigned the Dynamic Field to CustomerTicketMessage as not required
+- What happened?
+  - Typing single digit numbers into the Dynamic Field provoked two empty suggestions and an error: "Can't connect to MySQL Server on 'db' (115)", even detailed search showed no results
+  - Adding the "name" attribute in the config (Identifier name, Label name, Datatype Text) enabled the search to work correctly (detailed search not tested)
+  - After removing the "name" attribute again, it keeped working correctly, even an samely configured new Dynamic Database Field
